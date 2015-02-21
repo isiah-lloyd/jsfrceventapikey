@@ -1,0 +1,49 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>FRC Events API Key Generator</title>
+    <meta name="description" content="A small website to generate the right token to use the FRC Events API">
+    <meta name="author" content="Isiah Lloyd">
+    <style type="text/css">
+    div
+    {
+        margin-bottom: 1em;
+    }
+</style>
+</head>
+<body>
+
+    <form id="form">
+        <div>
+            <label for="username">Enter your supplied username: </label>
+            <input type="text" autocomplete="off" id="username" name="username">
+        </div>
+        <div>
+            <label for="token">Enter your authorization token: </label>
+            <input type="text" autocomplete="off" id="token" name="token">
+        </div>
+        <div>
+            <button id="button" type="button">Generate!</button>
+        </div>
+        <div>
+            <output id="output" for="username token"></output>
+        </div>
+    </form>
+<script type="text/javascript">
+var form = document.getElementById("button");
+var username = document.getElementsByName("username")[0];
+var token = document.getElementsByName("token")[0];
+var preEncodeKey;
+function generate() {
+    'use strict';
+    preEncodeKey = username.value + ":" + token.value;
+    var finalKey = "Basic " + btoa(preEncodeKey);
+    document.getElementById("output").innerHTML = finalKey;
+}
+form.addEventListener("click", generate, false);
+</script>
+</body>
+</html>
